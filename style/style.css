@@ -1,0 +1,151 @@
+* {
+  font-family: 'Inconsolata', monospace;
+  box-sizing: border-box; 
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.sublime-text {
+  margin: 10% auto 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 20px 50px;
+  border-radius: 8px;
+}
+
+.sublime-text .header {
+  text-align: center;
+  padding: 6px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
+  background-color: #f8f8f8;
+  font-family: "Lucida Grande", sans-serif;
+  background-image: -webkit-linear-gradient(top, #e8e8e8, #bcbbbc);
+  background-image: -moz-linear-gradient(top, #e8e8e8, #bcbbbc);
+  background-image: linear-gradient(top, #e8e8e8, #bcbbbc);
+  box-shadow: inset rgba(255, 255, 255, 0.7) 0px 1px 1px;
+  border-bottom: #6a6a6a9f 1px solid;
+}
+
+.sublime-text .header h1 {
+  width: calc(100% - 54px);
+  font-size: 13px;
+  line-height: 1;
+  margin: 0;
+}
+
+.sublime-text .buttons {
+  float: left;
+  position: relative;
+}
+
+.sublime-text .buttons > .button {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.sublime-text .buttons > .cls {
+  position: relative;
+  background-color: #ff635b;
+  border: 1px solid #e1483f;
+}
+
+.sublime-text .buttons > .cls:after {
+  content: ' ';
+  position: absolute;
+  background-color: #4d0000;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+}
+
+.sublime-text .buttons > .mnmz {
+  background-color: #ffbf2f;
+  border: 1px solid #e0a028;
+}
+
+.sublime-text .buttons > .mxmz {
+  background-color: #28ca41;
+  border: 1px solid #2bac2e;
+}
+
+.sublime-text .tabs {
+  height: 45px;
+  background-color: #252525;
+}
+
+.sublime-text .tab {
+  position: relative;
+  padding: 10px 15px;
+  height: 100%;
+  width: 25%;
+  background-color: #333333;
+  color: #b3b3b3;
+}
+
+.sublime-text .tab.active:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background-color: #eb5745;
+  left: 0;
+  bottom: 0;
+}
+
+.sublime-text .tab.unsaved:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #8f382e;
+  right: 15px;
+  top: 18px;
+  height: 5px;
+  width: 5px;
+}
+
+.sublime-text .body {
+  height: 600px;
+  width: 100%;
+  overflow-y: scroll;
+  background-color: #1b1b1b;
+}
+
+.sublime-text .status-bar {
+  position: relative;
+  height: 32px;
+  background-color: black;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sublime-text .indentation,
+.sublime-text .language {
+  position: absolute;
+  top: 8px;
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+.sublime-text .indentation {
+  right: 100px;
+}
+
+.sublime-text .language {
+  right: 25px;
+}
+
+.sublime-text #code {
+  padding: 0 15px;
+  background-color: #1b1b1b;
+  color: #eff2f3;
+  border: none;
+}
