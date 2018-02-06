@@ -76,9 +76,18 @@ class IhorGrivenko extends Student {
 } ^100`
 ],
   typeSpeed: 10,
+  startDelay: 1500,
   onTypingPaused() {
     const wrapper = document.getElementById('body');
     scrollTo(wrapper, wrapper.scrollHeight, 600);
+  },
+  preStringTyped() {
+    const songNotification = document.getElementById('apple-music-app');
+    songNotification.className += ' active';
+    setTimeout(() => {
+      songNotification.className = songNotification.className.replace('slideInRight', 'slideOutRight');
+    }, 5000);
+    getSong().play();
   },
   onComplete() {
     hljs.highlightBlock(document.getElementById('body'));
@@ -87,8 +96,8 @@ class IhorGrivenko extends Student {
 
 const scrollTo = (element, to, duration) => {
   if (duration <= 0) return;
-  var difference = to - element.scrollTop;
-  var perTick = difference / duration * 10;
+  const difference = to - element.scrollTop;
+  const perTick = difference / duration * 10;
 
   setTimeout(function() {
       element.scrollTop = element.scrollTop + perTick;
@@ -98,3 +107,24 @@ const scrollTo = (element, to, duration) => {
 }
 
 const typed = new Typed("#code", options);
+
+const apps = {};
+const appNames = ['safari', 'sublime', 'itunes', 'card'];
+const off = () => {
+  const activeApp = Object.values(apps).find(app => app && app.className.indexOf('active') >= 0);
+  activeApp.className = activeApp.className.replace(' active', '');
+  activeApp.className = activeApp.className.replace(' zoomIn', '');
+  return activeApp.id;
+};
+appNames.forEach(appName => {
+  apps[appName] = document.getElementById(`${appName}-app`);
+  if (apps[appName]) {
+    document.getElementById(appName).addEventListener('click', () => {
+      if (off() !== appName) {
+        apps[appName].className += ' active zoomIn';
+      }
+    });
+  }
+});
+
+const getSong = () => document.getElementById('song');

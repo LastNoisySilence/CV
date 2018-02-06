@@ -15,12 +15,65 @@ body {
   margin: 0 auto;
 }
 
+.ui.active {
+  display: block;
+}
+
+.ui.buttons {
+  left: 8px;
+  top: 4px;
+  position: absolute;
+}
+
+.ui.buttons > .button {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.ui.buttons > .cls {
+  position: relative;
+  background-color: #ff635b;
+  border: 1px solid #e1483f;
+}
+
+.ui.buttons > .cls:after {
+  content: ' ';
+  position: absolute;
+  background-color: #4d0000;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+}
+
+.ui.buttons > .mnmz {
+  background-color: #ffbf2f;
+  border: 1px solid #e0a028;
+}
+
+.ui.buttons > .mxmz {
+  background-color: #28ca41;
+  border: 1px solid #2bac2e;
+}
+
+.sublime-text .tabs {
+  height: 45px;
+  background-color: #252525;
+}
+
+.song,
+.card,
 .sublime-text {
+  display: none;
   margin: 5% auto 0;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 20px 50px;
   border-radius: 4px;
 }
 
+.card .header,
 .sublime-text .header {
   text-align: center;
   position: relative;
@@ -45,51 +98,6 @@ body {
   font-weight: 400;
   line-height: 1;
   margin: 0;
-}
-
-.sublime-text .buttons {
-  left: 8px;
-  top: 4px;
-  position: absolute;
-}
-
-.sublime-text .buttons > .button {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.sublime-text .buttons > .cls {
-  position: relative;
-  background-color: #ff635b;
-  border: 1px solid #e1483f;
-}
-
-.sublime-text .buttons > .cls:after {
-  content: ' ';
-  position: absolute;
-  background-color: #4d0000;
-  border-radius: 50%;
-  top: 3px;
-  left: 3px;
-  width: 4px;
-  height: 4px;
-}
-
-.sublime-text .buttons > .mnmz {
-  background-color: #ffbf2f;
-  border: 1px solid #e0a028;
-}
-
-.sublime-text .buttons > .mxmz {
-  background-color: #28ca41;
-  border: 1px solid #2bac2e;
-}
-
-.sublime-text .tabs {
-  height: 45px;
-  background-color: #252525;
 }
 
 .sublime-text .tab {
@@ -169,12 +177,140 @@ body {
   border: none;
 }
 
+.card {
+  max-width: 320px;
+}
+
+.card .header {
+  height: 23px;
+  background: white;
+  border: none;
+}
+
+.card .body {
+  height: 335px;
+  background: white;
+  padding-top: 20px;
+  text-align: center;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.card .body .photo {
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.card .body .photo > img {
+  position: absolute;
+  width: 150px;
+  left: -33px;
+  top: -13px;
+}
+
+.card .body .name {
+  display: inline-block;
+  font-size: 26px;
+  font-weight: 300;
+  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
+}
+
+.card .row:not(:last-child):after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 80%;
+  margin: 15px auto;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.card .row .col {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+}
+
+.card .row .col:nth-child(odd) {
+  width: 25%;
+  text-align: right;
+  opacity: 0.5;
+}
+
+.song {
+  margin: 0;
+  position: fixed;
+  background: inherit;
+  padding: 12px 14px;
+  top: 15px;
+  right: 10px;
+  width: 320px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 6px; 
+}
+
+.song .cover {
+  width: 46px;
+  position: relative;
+  z-index: 1;
+}
+
+.song .title-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 70px;
+}
+
+.song .title-wrapper > .icon {
+  display: inline-block;
+  width: 20px;
+  vertical-align: sub;
+}
+
+.song .description,
+.song .title-wrapper > .title {
+  z-index: 1;
+  opacity: .7;
+  margin-left: -4px;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
+  display: inline-block;
+}
+
+.song .description {
+  position: absolute;
+  top: 42px;
+  left: 74px;
+}
+
+.song:after {
+  content: ' ';
+  width: 400px;
+  height: 320px;
+  background: inherit;
+  position: absolute;
+  left: -25px;
+  right: 0;
+  top: -25px;
+  bottom: 0;
+  box-shadow: inset 0 0 0 200px rgba(255,255,255,0.5);
+  filter: blur(12px);
+}
+
 .dock {
   background: inherit;
-  width: 195px;
+  width: 258px;
   height: 73px;
   padding: 7px;
-  position: absolute;
+  position: fixed;
   margin: 0 auto;
   bottom: 0;
   right: 0;
@@ -183,6 +319,7 @@ body {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
  }
+
  .dock:before {
   content: ' ';
   width: 300px;

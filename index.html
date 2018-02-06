@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css">
   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
   <title>Ihor Grivenko | Front-End Developer</title>
@@ -13,9 +14,73 @@
 
 <body>
   <div class="container">
-    <div class="sublime-text">
+    <div id="apple-music-app" class="ui song animated slideInRight">
+      <audio id="song">
+        <source src="./static/Mulatu Astatke - Broken Flowers.mp3" type="audio/mpeg">
+      </audio>
+      <img class="cover" src="./static/song.png" alt="Yekermo Sew">
+      <div class="title-wrapper">
+        <img class="icon" src="./static/itunes.png" alt="iTunes">
+        <div class="title">
+          Yekermo Sew
+        </div>
+      </div>
+      <div class="description">
+        Mulatu Astatke - Broken Flowers
+      </div>
+    </div>
+    <div id="card-app" class="ui card animated">
       <div class="header">
-        <div class="buttons">
+        <div class="ui buttons">
+          <div class="button cls"></div>
+          <div class="button mnmz"></div>
+          <div class="button mxmz"></div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="photo">
+          <img src="./static/photo.jpg" alt="Ihor Grivenko">
+        </div>
+        <h1 class="name">
+          Ihor Grivenko
+        </h1>
+        <div class="row">
+          <div class="col">
+            <label>Skype: </label>
+          </div>
+          <div class="col">
+            <a href="skype:inerono?chat">inerono</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Phone: </label>
+          </div>
+          <div class="col">
+            <a href="callTo:+380931217897">093-121-78-97</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>E-mail: </label>
+          </div>
+          <div class="col">
+            <a href="mailto:inerono@gmail.com">inerono@gmail.com</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Linked In: </label>
+          </div>
+          <div class="col">
+            <a target="_blank" href="https://www.linkedin.com/in/ihor-grivenko-52308a130/">linkedin/ihor.grivenko</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sublime-app" class="ui active sublime-text animated zoomIn">
+      <div class="header">
+        <div class="ui buttons">
           <div class="button cls"></div>
           <div class="button mnmz"></div>
           <div class="button mxmz"></div>
@@ -50,6 +115,9 @@
     </div>
     <div id="itunes" class="app">
       <img src="./static/itunes.png" alt="iTunes">
+    </div>
+    <div id="card" class="app">
+      <img src="./static/card.png" alt="User card">
     </div>
   </div>
 </body>
