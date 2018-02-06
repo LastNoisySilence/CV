@@ -39,7 +39,7 @@ body {
 }
 
 .ui.buttons > .cls:after {
-  content: ' ';
+  content: '';
   position: absolute;
   background-color: #4d0000;
   border-radius: 50%;
