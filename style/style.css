@@ -271,9 +271,9 @@ body {
 
 .song .title-wrapper {
   position: absolute;
-  z-index: 1;
   top: 12px;
   left: 70px;
+  z-index: 1;
 }
 
 .song .title-wrapper > .icon {
