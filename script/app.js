@@ -6,8 +6,8 @@ const appNames = ['safari', 'sublime', 'card'];
 const links = [
   'https://www.etachki.com/',
   'https://www.etachki.com/classified/ru/',
-  'https://carmarket.com.ua/',
-  'http://www.wowserviceschool.com/'
+  'https://www.etachki.com/marketplace/ru/',
+  'https://carmarket.com.ua/'
 ];
 
 const tabs = document.querySelectorAll('.safari-app .tab');
