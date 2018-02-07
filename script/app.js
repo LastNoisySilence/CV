@@ -1,6 +1,69 @@
 import Typed from 'typed.js';
 
 
+const apps = {};
+const appNames = ['safari', 'sublime', 'card'];
+const links = [
+  'https://www.etachki.com/',
+  'https://www.etachki.com/classified/ru/',
+  'https://carmarket.com.ua/',
+  'http://www.wowserviceschool.com/'
+];
+
+const tabs = document.querySelectorAll('.safari-app .tab');
+let currentTab = document.querySelectorAll('.safari-app .tab')[0];
+const frame = document.getElementById('frame');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', (e) => {
+    currentTab.className = currentTab.className.replace(' active', '');
+    currentTab = e.target;
+    currentTab.className += ' active';
+    frame.src = links[Array.prototype.indexOf.call(tabs, currentTab)];
+  });
+});
+
+const off = () => {
+  const activeApp = Object.values(apps).find(app => app.form && app.form.className.indexOf('active') >= 0);
+  activeApp.form.className = activeApp.form.className.replace(' active', '');
+  activeApp.form.className = activeApp.form.className.replace(' zoomIn', '');
+  activeApp.icon.className = activeApp.icon.className.replace(' active', '');
+  return activeApp.form.id;
+};
+
+appNames.forEach(appName => {
+  apps[appName] = {
+    form: document.getElementById(`${appName}-app`)
+  }
+
+  if (apps[appName]) {
+    apps[appName].icon = document.getElementById(appName);
+    document.getElementById(appName).addEventListener('click', () => {
+      if (off() !== appName) {
+        apps[appName].form.className += ' active zoomIn';
+        apps[appName].icon.className += ' active';
+      }
+    });
+  }
+});
+
+const getSong = () => document.getElementById('song');
+
+const playPause = () => {
+  const itunes = document.getElementById('itunes');
+  if (!getSong().paused) {
+    getSong().pause();
+    itunes.className += ' disabled';
+  } else {
+    getSong().play();
+    itunes.className = itunes.className.replace(' disabled', '');
+  }
+};
+
+document.getElementById('itunes').addEventListener('click', () => {
+  playPause();
+});
+
 const options = {
   strings: [,`
 import { Student } from 'NTUU.KPI/TEF/APEPS/department-of-automation-of-power-processes-and-systems-engineering';
@@ -91,8 +154,15 @@ class IhorGrivenko extends Student {
   },
   onComplete() {
     hljs.highlightBlock(document.getElementById('body'));
+    setTimeout(() => {
+      off();
+      apps.card.form.className += ' zoomIn active';
+      apps.card.icon.className += ' active';
+    }, 2000);
   }
 }
+
+const typed = new Typed("#code", options);
 
 const scrollTo = (element, to, duration) => {
   if (duration <= 0) return;
@@ -105,26 +175,3 @@ const scrollTo = (element, to, duration) => {
       scrollTo(element, to, duration - 10);
   }, 10);
 }
-
-const typed = new Typed("#code", options);
-
-const apps = {};
-const appNames = ['safari', 'sublime', 'itunes', 'card'];
-const off = () => {
-  const activeApp = Object.values(apps).find(app => app && app.className.indexOf('active') >= 0);
-  activeApp.className = activeApp.className.replace(' active', '');
-  activeApp.className = activeApp.className.replace(' zoomIn', '');
-  return activeApp.id;
-};
-appNames.forEach(appName => {
-  apps[appName] = document.getElementById(`${appName}-app`);
-  if (apps[appName]) {
-    document.getElementById(appName).addEventListener('click', () => {
-      if (off() !== appName) {
-        apps[appName].className += ' active zoomIn';
-      }
-    });
-  }
-});
-
-const getSong = () => document.getElementById('song');
