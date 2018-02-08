@@ -154,11 +154,6 @@ class IhorGrivenko extends Student {
   },
   onComplete() {
     hljs.highlightBlock(document.getElementById('body'));
-    setTimeout(() => {
-      off();
-      apps.card.form.className += ' zoomIn active';
-      apps.card.icon.className += ' active';
-    }, 2000);
   }
 }
 
