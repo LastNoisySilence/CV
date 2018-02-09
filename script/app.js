@@ -1,8 +1,24 @@
 import Typed from 'typed.js';
 
 
-const apps = {};
-const appNames = ['safari', 'sublime', 'card'];
+const forms = document.querySelectorAll('.ui.app');
+let currentForm = forms[0];
+const currentFormIndex = form => Array.prototype.indexOf.call(forms, form);
+
+const icons = document.querySelectorAll('.ui.icon');
+let currentIcon = icons[0];
+const currentIconIndex = icon => Array.prototype.indexOf.call(icons, icon);
+
+const tabs = document.querySelectorAll('.safari .tab');
+let currentTab = tabs[0];
+const currentTabIndex = tab => Array.prototype.indexOf.call(tabs, tab);
+
+const codeWrapper = document.getElementById('codeWrapper');
+
+const frame = document.getElementById('frame');
+
+const song = document.getElementById('song');
+
 const links = [
   'https://www.etachki.com/',
   'https://www.etachki.com/classified/ru/',
@@ -10,9 +26,42 @@ const links = [
   'https://carmarket.com.ua/'
 ];
 
-const tabs = document.querySelectorAll('.safari-app .tab');
-let currentTab = document.querySelectorAll('.safari-app .tab')[0];
-const frame = document.getElementById('frame');
+const scrollTo = (element, to, duration) => {
+  if (duration <= 0) return;
+  const difference = to - element.scrollTop;
+  const perTick = difference / duration * 10;
+
+  setTimeout(() => {
+      element.scrollTop = element.scrollTop + perTick;
+      if (element.scrollTop === to) return;
+      scrollTo(element, to, duration - 10);
+  }, 10);
+};
+
+icons.forEach((icon, index) => {
+  index !== 3
+    ? icon.addEventListener('click', event => {
+      currentIcon.className = currentIcon.className.replace(' active', '');
+      currentIcon = event.target.parentNode;
+      currentIcon.className += ' active';
+      currentForm.className = currentForm.className.replace(' active', '');
+      currentForm = forms[currentIconIndex(currentIcon)];
+      currentForm.className += ' active';
+    })
+    : icon.addEventListener('click', event => {
+      const itunes = event.target.parentNode;
+      if (!song.paused) {
+        song.pause();
+        itunes.className += ' disabled';
+      } else {
+        song.play();
+        forms[3].className += ' active';
+        setTimeout(() => forms[3].className = forms[3].className.replace('slideInRight', 'slideOutRight'), 5000);
+        itunes.className = itunes.className.replace(' disabled', '');
+      }
+    })
+});
+
 
 tabs.forEach(tab => {
   tab.addEventListener('click', (e) => {
@@ -23,48 +72,11 @@ tabs.forEach(tab => {
   });
 });
 
-const off = () => {
-  const activeApp = Object.values(apps).find(app => app.form && app.form.className.indexOf('active') >= 0);
-  activeApp.form.className = activeApp.form.className.replace(' active', '');
-  activeApp.form.className = activeApp.form.className.replace(' zoomIn', '');
-  activeApp.icon.className = activeApp.icon.className.replace(' active', '');
-  return activeApp.form.id;
-};
-
-appNames.forEach(appName => {
-  apps[appName] = {
-    form: document.getElementById(`${appName}-app`)
-  }
-
-  if (apps[appName]) {
-    apps[appName].icon = document.getElementById(appName);
-    document.getElementById(appName).addEventListener('click', () => {
-      if (off() !== appName) {
-        apps[appName].form.className += ' active zoomIn';
-        apps[appName].icon.className += ' active';
-      }
-    });
-  }
-});
-
-const getSong = () => document.getElementById('song');
-
-const playPause = () => {
-  const itunes = document.getElementById('itunes');
-  if (!getSong().paused) {
-    getSong().pause();
-    itunes.className += ' disabled';
-  } else {
-    getSong().play();
-    itunes.className = itunes.className.replace(' disabled', '');
-  }
-};
-
-document.getElementById('itunes').addEventListener('click', () => {
-  playPause();
-});
-
-const options = {
+const typed = new Typed("#code", {
+  onTypingPaused() { scrollTo(codeWrapper, codeWrapper.scrollHeight, 600) },
+  typeSpeed: 10,
+  startDelay: 1500,
+  showCursor: false,
   strings: [,`
 import { Student } from 'NTUU.KPI/TEF/APEPS/department-of-automation-of-power-processes-and-systems-engineering';
 
@@ -137,36 +149,7 @@ class IhorGrivenko extends Student {
     } ^100
   ] ^100
 } ^100`
-],
-  typeSpeed: 10,
-  startDelay: 1500,
-  onTypingPaused() {
-    const wrapper = document.getElementById('body');
-    scrollTo(wrapper, wrapper.scrollHeight, 600);
-  },
-  preStringTyped() {
-    const songNotification = document.getElementById('apple-music-app');
-    songNotification.className += ' active';
-    setTimeout(() => {
-      songNotification.className = songNotification.className.replace('slideInRight', 'slideOutRight');
-    }, 5000);
-    getSong().play();
-  },
-  onComplete() {
-    hljs.highlightBlock(document.getElementById('body'));
-  }
-}
+  ]
+});
 
-const typed = new Typed("#code", options);
 
-const scrollTo = (element, to, duration) => {
-  if (duration <= 0) return;
-  const difference = to - element.scrollTop;
-  const perTick = difference / duration * 10;
-
-  setTimeout(function() {
-      element.scrollTop = element.scrollTop + perTick;
-      if (element.scrollTop === to) return;
-      scrollTo(element, to, duration - 10);
-  }, 10);
-}

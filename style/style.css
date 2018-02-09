@@ -1,6 +1,11 @@
 * {
-  font-family: 'Inconsolata', Arial, 'Lucida Grande', sans-serif, monospace;
+  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
+  font-size: 14px;
   box-sizing: border-box; 
+}
+
+html, body, .container {
+  height: 100%;
 }
 
 body {
@@ -8,6 +13,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 0px;
+  padding: 35px;
 }
 
 .container {
@@ -38,7 +45,7 @@ body {
   border: 1px solid #e1483f;
 }
 
-.ui.buttons > .cls:after {
+.ui.buttons > .cls.unsaved:after {
   content: '';
   position: absolute;
   background-color: #4d0000;
@@ -74,7 +81,7 @@ body {
 }
 
 .card .header,
-.safari-app .header,
+.safari .header,
 .sublime-text .header {
   text-align: center;
   position: relative;
@@ -95,7 +102,6 @@ body {
 .sublime-text .header h1 {
   font-size: 12px;
   width: calc(100% - 60px);
-  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
   font-weight: 400;
   line-height: 1;
   margin: 0;
@@ -106,7 +112,6 @@ body {
   padding: 12px 15px;
   padding-right: 25px;
   overflow: hidden;
-  font-size: 14px;
   height: 100%;
   width: 25%;
   background-color: #333333;
@@ -141,16 +146,9 @@ body {
 }
 
 .sublime-text .body {
-  height: 600px;
   width: 100%;
   overflow-y: scroll;
   background-color: #1b1b1b;
-}
-
-@media only screen and (max-height : 768px) {
-  .sublime-text .body {
-    height: 500px;
-  }
 }
 
 .sublime-text .status-bar {
@@ -180,6 +178,7 @@ body {
 .sublime-text #code {
   padding: 0 15px;
   background-color: #1b1b1b;
+  font-family: 'Inconsolata', Arial, 'Lucida Grande', sans-serif, monospace;
   color: #eff2f3;
   border: none;
 }
@@ -225,7 +224,6 @@ body {
   display: inline-block;
   font-size: 26px;
   font-weight: 300;
-  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
 }
 
 .card .row:not(:last-child):after {
@@ -288,8 +286,6 @@ body {
   opacity: .7;
   margin-left: -4px;
   font-weight: 400;
-  font-size: 14px;
-  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
   display: inline-block;
 }
 
@@ -313,22 +309,22 @@ body {
   filter: blur(12px);
 }
 
-.safari-app {
+.safari {
   display: none;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.safari-app .search-bar-wrapper {
+.safari .search-bar-wrapper {
   width: calc(100% - 60px);
   margin-left: 15px;
 }
 
-.safari-app .ui.buttons {
+.safari .ui.buttons {
   top: 10px;
 }
 
-.safari-app .search-bar {
+.safari .search-bar {
   max-width: 400px;
   margin: 0 auto;
   background-color: #f7f7f7;
@@ -337,57 +333,53 @@ body {
   border: 1px solid #c7c4c6;
   border-bottom: 1px solid #a8a5a7;
   padding: 4px 12px;
-  font-size: 14px;
-  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
 }
 
-.safari-app .tab {
+.safari .tab {
   width: 25%;
   display: inline-block;
   padding: 4px 12px;
-  font-size: 14px;
-  font-family: 'Helvetica Neue', Helvetica, 'Inconsolata';
   color: #545254;
   text-align: center;
   background-color: #c0bec0;
   border: 1px solid #a5a2a4;
 }
 
-.safari-app .tab.active {
+.safari .tab.active {
   color: black;
   background-color: #d9d8d9;
 }
 
-.safari-app .tab:first-child {
+.safari .tab:first-child {
   border-left: none; 
 }
 
-.safari-app .tab:last-child {
+.safari .tab:last-child {
   border-right: none;
 }
 
-.safari-app .body {
-  height: 800px;
+.safari .body {
   background: white;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   overflow: hidden;
 }
 
-.safari-app .body > iframe {
+.safari .body > iframe {
   width: 100%;
   height: 100%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
-@media only screen and (max-height : 768px) {
-  .safari-app .body {
-    height: 600px;
-  }
+.safari .tab,
+.dock .icon {
+  cursor: pointer;
 }
 
 .dock {
   background: inherit;
-  width: 258px;
+  width: 246px;
   height: 73px;
   padding: 7px;
   position: fixed;
@@ -414,18 +406,18 @@ body {
   filter: blur(12px);
  }
 
- .dock > .app {
+ .dock > .icon {
    display: inline-block;
    position: relative;
    width: 55px;
  }
 
- .dock > .app > img {
+ .dock > .icon > img {
    width: 100%;
    height: 100%;
  }
 
- .dock > .app.active:after {
+ .dock > .icon.active:after {
   content: ' ';
   display: block;
   position: absolute;
@@ -438,8 +430,19 @@ body {
   margin: 0 auto;
  }
 
- .dock > .app.disabled {
+ .dock > .icon.disabled {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
  }
 
+.sublime-text,
+.safari {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 74%;
+}
+
+.sublime-text .body,
+.safari .body {
+  height: 100%;
+}
